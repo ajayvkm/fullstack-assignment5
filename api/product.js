@@ -1,11 +1,11 @@
 const { UserInputError } = require('apollo-server-express');
 const { getDb, getNextSequence } = require('./db.js');
 
-/*async function get(_, { id}) {
+async function get(_, { id }) {
     const db = getDb();
     const product = await db.collection('products').findOne({ id });
     return product;
-}*/
+}
 
 function productList() { //_, {status, effortMin, effortMax}
     const db = getDb();
@@ -36,12 +36,12 @@ async function productAdd(_, { product }) {
     return savedProduct;
 }
 
-/*async function update(_, {id, changes}) {
+async function update(_, { id, changes }) {
     const db = getDb();
     if (changes.productName || changes.category || changes.price) {
         const product = await db.collection('products').findOne({ id });
         Object.assign(product, changes);
-        productValidate(product);
+        //productValidate(product);
     }
     await db.collection('products').updateOne({ id }, { $set: changes });
     const savedProduct = await db.collection('products').findOne({ id });
@@ -60,10 +60,13 @@ async function remove(_, { id }) {
         return result.deletedCount === 1;
     }
     return false;
-}*/
+}
 
 //get, update, delete: remove,
 module.exports = {
     productList,
     productAdd,
+    get,
+    update,
+    delete: remove,
 };

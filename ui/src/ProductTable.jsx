@@ -1,46 +1,62 @@
 import React from 'react';
+import {Link, NavLink, withRouter} from 'react-router-dom';
 
-class ProductRow extends React.Component {
-    render() {
-        const product = this.props.product;
+const ProductRow = withRouter(({
+                                   product, deleteProduct, index,
+                               }) => {
 
         return (
             <tr>
+                {/*<td>{product._id}</td>*/}
                 <td>{product.id}</td>
                 <td>{product.productName}</td>
-                <td>{product.price}</td>
+                <td>${product.price}</td>
                 <td>{product.category}</td>
-                <td><a href={product.imageUrl} target="_blank">View</a></td>
+                <td>
+                    <a href={product.imageUrl} target="_blank">View</a>
+                    {' | '}
+                    <a href={`/edit/${product.id}`}>Edit</a>
+                    {' | '}
+                    <a href="javascript:void(0);" onClick={() => {
+                        deleteProduct(index);
+                    }}>
+                        Delete
+                    </a>
+                </td>
             </tr>
         );
     }
-}
+);
 
-export default class ProductTable extends React.Component {
-    render() {
-        const productRows = this.props.products.map(product =>
-            <ProductRow product={product}/>
-        );
+export default function ProductTable({ products, deleteProduct }) {
+    const productRows = products.map((product, index) => (
+        <ProductRow
+            key={product.id}
+            product={product}
+            deleteProduct={deleteProduct}
+            index={index}
+        />
+    ));
 
-        return (
-            <div>
-                <h4>Showing all available products</h4>
-                <hr/>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Category</th>
-                        <th>Image</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {productRows}
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <h4>Showing all available products</h4>
+            <hr/>
+            <table>
+                <thead>
+                <tr>
+                    {/*<th>Mongo Id</th>*/}
+                    <th>Id</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {productRows}
+                </tbody>
+            </table>
+        </div>
+    );
 }

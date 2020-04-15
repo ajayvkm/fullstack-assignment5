@@ -10,13 +10,13 @@ const resolvers = {
     Query: {
         about: () => about.getMessage,
         productList: products.productList,
-        /*product: products.get,*/
+        product: products.get,
     },
     Mutation: {
         setAboutMessage: about.setMessage,
         productAdd: products.productAdd,
-        /*productUpdate: products.update,
-        productDelete: products.delete,*/
+        productUpdate: products.update,
+        productDelete: products.delete,
     }
 };
 
