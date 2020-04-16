@@ -29,7 +29,7 @@ export default class ProductAdd extends React.Component {
                 <h4>Add a new product to inventory</h4>
                 <hr/>
                 <form name="productAdd" onSubmit={this.handleSubmit}>
-                    <table border="0">
+                    <table className="table">
                         <tr>
                             <td>
                                 <label>Category</label><br/>

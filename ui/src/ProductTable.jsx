@@ -13,14 +13,14 @@ const ProductRow = withRouter(({
                 <td>${product.price}</td>
                 <td>{product.category}</td>
                 <td>
-                    <a href={product.imageUrl} target="_blank">View</a>
+                    <a href={`/view/${product.id}`}>View</a>
                     {' | '}
                     <a href={`/edit/${product.id}`}>Edit</a>
                     {' | '}
                     <a href="javascript:void(0);" onClick={() => {
                         deleteProduct(index);
                     }}>
-                        Delete
+                    Delete
                     </a>
                 </td>
             </tr>
@@ -42,7 +42,7 @@ export default function ProductTable({ products, deleteProduct }) {
         <div>
             <h4>Showing all available products</h4>
             <hr/>
-            <table>
+            <table className="table">
                 <thead>
                 <tr>
                     {/*<th>Mongo Id</th>*/}

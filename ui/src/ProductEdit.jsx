@@ -120,8 +120,7 @@ export default class ProductEdit extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <h3>{`Editing product: ${id}`}</h3>
-                <table>
-                    <tbody>
+                <table className="table">
                     <tr>
                         <td>Product Name:</td>
                         <td>
@@ -177,12 +176,11 @@ export default class ProductEdit extends React.Component {
                             <button type="submit">Submit</button>
                         </td>
                     </tr>
-                    </tbody>
                 </table>
                 {validationMessage}
-                <Link to={`/edit/${id - 1}`}>Prev</Link>
+                {/*<Link to={`/edit/${id - 1}`}>Prev</Link>
                 {' | '}
-                <Link to={`/edit/${id + 1}`}>Next</Link>
+                <Link to={`/edit/${id + 1}`}>Next</Link>*/}
             </form>
         );
     }
